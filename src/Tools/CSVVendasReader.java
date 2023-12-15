@@ -4,6 +4,7 @@ import Domain.Venda;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CSVVendasReader {
@@ -14,11 +15,13 @@ public class CSVVendasReader {
         this.filePath = filePath;
     }
 
-    public void readCSVtoModel() throws FileNotFoundException {
+    public ArrayList<Venda> readCSVtoModel() throws FileNotFoundException {
         File file = new File(this.filePath);
         Scanner sc = new Scanner(file);
 
         String linha = sc.nextLine();
+
+        ArrayList<Venda> arrayVendas = new ArrayList<>();
 
         while(sc.hasNextLine()){
             linha = sc.nextLine();
@@ -31,7 +34,9 @@ public class CSVVendasReader {
 
             Venda vendaAtual = new Venda(tipoProduto, produto, quantidadeVendida, precoUnitario);
 
-            array
+            arrayVendas.add(vendaAtual);
         }
+
+        return arrayVendas;
     }
 }

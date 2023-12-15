@@ -1,17 +1,21 @@
 package Model;
 
 import Domain.Venda;
+import Tools.CSVVendasReader;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class VendaModel {
-    ArrayList<Venda> vendaArrayList;
+    private ArrayList<Venda> vendaArray;
 
-    public VendaModel(ArrayList<Venda> vendaArrayList) {
-        this.vendaArrayList = new ArrayList<>();
+    public VendaModel(String filePath) throws FileNotFoundException {
+        CSVVendasReader csvVendasReader = new CSVVendasReader(filePath);
+        this.vendaArray = csvVendasReader.readCSVtoModel();
     }
 
-    public void addVenda(Venda vendaNova){
-        this.vendaArrayList.add(vendaNova);
+    public ArrayList<Venda> getVendaArray(){
+        return vendaArray;
     }
+
 }
